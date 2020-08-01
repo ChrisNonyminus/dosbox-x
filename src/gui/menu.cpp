@@ -479,6 +479,8 @@ static const char *def_menu_sound[] =
     "mapper_recvolup",
     "mapper_recvoldown",
     "--",
+    "mixer_info",
+    "--",
     "mixer_mute",
     "mixer_swapstereo",
     NULL

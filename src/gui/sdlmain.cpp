@@ -7171,6 +7171,23 @@ bool mixer_mute_menu_callback(DOSBoxMenu * const menu,DOSBoxMenu::item * const m
     return true;
 }
 
+bool mixer_info_menu_callback(DOSBoxMenu * const menu,DOSBoxMenu::item * const menuitem) {
+    (void)menu;//UNUSED
+    (void)menuitem;//UNUSED
+    void MAPPER_ReleaseAllKeys(void);
+    MAPPER_ReleaseAllKeys();
+
+    GFX_LosingFocus();
+
+    GUI_Shortcut(19);
+
+    void MAPPER_ReleaseAllKeys(void);
+    MAPPER_ReleaseAllKeys();
+
+    GFX_LosingFocus();
+    return true;
+}
+
 bool dos_mouse_enable_int33_menu_callback(DOSBoxMenu * const menu,DOSBoxMenu::item * const menuitem) {
     (void)menu;//UNUSED
     (void)menuitem;//UNUSED
@@ -8969,6 +8986,8 @@ int main(int argc, char* argv[]) SDL_MAIN_NOEXCEPT {
                     set_callback_function(mixer_swapstereo_menu_callback);
                 mainMenu.alloc_item(DOSBoxMenu::item_type_id,"mixer_mute").set_text("Mute").
                     set_callback_function(mixer_mute_menu_callback);
+                mainMenu.alloc_item(DOSBoxMenu::item_type_id,"mixer_info").set_text("Show sound levels").
+                    set_callback_function(mixer_info_menu_callback);
             }
         }
         {

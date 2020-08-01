@@ -1378,6 +1378,30 @@ public:
     }
 };
 
+class ShowMixerInfo : public GUI::ToplevelWindow {
+protected:
+    GUI::Input *name;
+public:
+    ShowMixerInfo(GUI::Screen *parent, int x, int y, const char *title) :
+        ToplevelWindow(parent, x, y, 350, 270, title) {
+            std::string mixerinfo();
+            std::istringstream in(mixerinfo().c_str());
+            int r=0;
+            if (in)	for (std::string line; std::getline(in, line); ) {
+                r+=25;
+                new GUI::Label(this, 40, r, line.c_str());
+            }
+            (new GUI::Button(this, 140, r+30, "Close", 70))->addActionHandler(this);
+    }
+
+    void actionExecuted(GUI::ActionEventSource *b, const GUI::String &arg) {
+        (void)b;//UNUSED
+        if (arg == "Close")
+            close();
+        if (shortcut) running = false;
+    }
+};
+
 class ConfigurationWindow : public GUI::ToplevelWindow {
 public:
     GUI::Button *saveButton, *closeButton;
@@ -1682,6 +1706,10 @@ static void UI_Select(GUI::ScreenSDL *screen, int select) {
         case 18: {
             auto *np3 = new SetLocalSize(screen, 90, 100, "Set Default Local Freesize...");
             np3->raise();
+            } break;
+        case 19: {
+            auto *np4 = new ShowMixerInfo(screen, 90, 100, "Current sound levels in DOSBox-X");
+            np4->raise();
             } break;
         default:
             break;
