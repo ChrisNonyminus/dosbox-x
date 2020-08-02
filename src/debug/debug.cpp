@@ -1551,7 +1551,7 @@ bool ParseCommand(char* str) {
 	if (command == "MEMDUMP") { // Dump memory to file
 		Bit16u seg = (Bit16u)GetHexValue(found,found); found++;
 		Bit32u ofs = GetHexValue(found,found); found++;
-		Bit32u num = 268435456;
+		Bit32u num = ((unsigned long)MEM_TotalPages() << 12UL);
 		SaveMemory(seg,ofs,num);
 		return true;
 	}
@@ -1559,7 +1559,7 @@ bool ParseCommand(char* str) {
 	if (command == "MEMDUMPBIN") { // Dump memory to file binary
 		Bit16u seg = (Bit16u)GetHexValue(found,found); found++;
 		Bit32u ofs = GetHexValue(found,found); found++;
-        Bit32u num = 268435456;
+        Bit32u num = ((unsigned long)MEM_TotalPages() << 12UL);
 		SaveMemoryBin(seg,ofs,num);
 		return true;
 	}
