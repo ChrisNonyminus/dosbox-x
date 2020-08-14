@@ -1,3 +1,5 @@
+Note about this fork in particular: I don't know how to sync changes made in Visual Studio to repos like this with Github, so often this fork will be outdated compared to the devs' forks and branches. However, I do make changes while in Visual Studio.
+
 **README for DOSBox-X** (official website: [dosbox-x.com](http://dosbox-x.com))
 
 Introduction to DOSBox-X
